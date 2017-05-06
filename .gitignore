@@ -4,6 +4,8 @@ bin-debug/
 bin-release/
 [Oo]bj/ # FlashDevelop obj
 [Bb]in/ # FlashDevelop bin
+bower_components/
+node_modules/
 
 # Other files and folders
 .settings/
