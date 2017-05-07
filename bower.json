@@ -1,0 +1,26 @@
+{
+  "name": "SliitHisPharmacyModuleFrontEnd",
+  "homepage": "https://github.com/rama41222/SliitHisPharmacyModuleFrontEnd",
+  "description": "Pharmacy component front end for sliit his",
+  "main": "app.js",
+  "keywords": [
+    "angularjs"
+  ],
+  "authors": [
+    "rama41222"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.4",
+    "components-font-awesome": "^4.7.0",
+    "bootstrap": "^3.3.7"
+  }
+}
