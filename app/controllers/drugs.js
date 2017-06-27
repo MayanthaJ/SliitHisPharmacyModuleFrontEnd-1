@@ -9,7 +9,7 @@ app.controller('drugsController', ['$scope', '$http', '$location', '$routeParams
 					if(response.data.success == true){
 						console.log(response.data);
 						$scope.drugsList = response.data.drugList;
-
+                         
 						$scope.msg = response.data.msg;
 
 					}else if(response.data.success == false){
