@@ -1,9 +1,10 @@
 app.controller('prescriptionController', function($scope, $http, $location, $routeParams){
-	console.log('prescription controller loaded');
+
 	$scope.fetchPrescriptions = function(){
  
 	 
 			$http.get('http://localhost:8888/prescriptions/',$scope.user).then(function(response){
+				
 				if(response.status == 200){
 					if(response.data.success == true){
 						console.log(response.data);
