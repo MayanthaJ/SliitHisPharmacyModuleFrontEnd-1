@@ -1,4 +1,4 @@
-app.controller('prescriptionController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
+app.controller('prescriptionController', function($scope, $http, $location, $routeParams){
 	console.log('prescription controller loaded');
 	$scope.fetchPrescriptions = function(){
  
@@ -28,4 +28,4 @@ app.controller('prescriptionController', ['$scope', '$http', '$location', '$rout
 		 
 		 }
 	
-}]);
+});

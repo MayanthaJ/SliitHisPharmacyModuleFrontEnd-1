@@ -1,3 +1,4 @@
+
 app.service('alert', function ($rootScope, $timeout) {
     	return function (type,title,message,timeout){
     		var alertTimeout;

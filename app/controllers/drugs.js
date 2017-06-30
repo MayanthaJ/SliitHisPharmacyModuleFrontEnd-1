@@ -1,4 +1,4 @@
-app.controller('drugsController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
+app.controller('drugsController',function($scope, $http, $location, $routeParams){
 	console.log('Drugs controller loaded');
 	
 	$scope.fetchDrugs = function(){
@@ -27,4 +27,4 @@ app.controller('drugsController', ['$scope', '$http', '$location', '$routeParams
 			console.log(err);
 		});
 	}
-}]);
+});
