@@ -1,4 +1,3 @@
-var app = angular.module('phPlus');
 app.controller('loginController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
 	
 	console.log("login controller loaded");

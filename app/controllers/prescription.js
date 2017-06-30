@@ -1,4 +1,3 @@
-var app = angular.module('phPlus');
 app.controller('prescriptionController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
 	console.log('prescription controller loaded');
 	$scope.fetchPrescriptions = function(){

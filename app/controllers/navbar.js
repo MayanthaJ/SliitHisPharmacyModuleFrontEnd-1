@@ -1,4 +1,3 @@
-var app = angular.module('phPlus');
 app.controller('navBarController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
 	
 	$scope.isUserLoggedIn = function(){

@@ -1,4 +1,3 @@
-var app = angular.module('phPlus');
 app.controller('drugsController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
 	console.log('Drugs controller loaded');
 	

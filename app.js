@@ -1,6 +1,7 @@
 var app = angular.module('phPlus',['ngRoute']);
 
 app.config(($routeProvider)=>{
+	
 	$routeProvider.when('/',{
 
 		controller :'loginController',
