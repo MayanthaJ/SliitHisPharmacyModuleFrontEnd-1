@@ -22,13 +22,31 @@ app.config(($routeProvider)=>{
 		controller :'drugsController',
 		templateUrl : 'app/views/drugs.html'
 	})
+	.when('/arr',{
+
+		controller :'ArrCtrl',
+		templateUrl : 'app/views/arg.html'
+	})
 	.when('/logout',{
 		template: '',
 		controller :'LogoutCtrl'
 	})
+
 	.otherwise({
 
 		redirectTo: '/'
 	});
 
+});
+
+
+
+app.run(function ($rootScope, $location, auth) {
+    $rootScope.$on('$routeChangeStart', function (event) {
+
+        if (!auth.isAuthenticated()) {
+            $location.path('/');
+        }
+       
+    });
 });
