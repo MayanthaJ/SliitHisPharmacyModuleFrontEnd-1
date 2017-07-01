@@ -1,0 +1,94 @@
+<div class="row">
+	<div class="col-sm-3"></div>
+<div class="col-sm-6" ng-init="clearAll()">
+
+<form ng-submit="addPrescription()" name="prescription" class="form-signin" novalidate>
+	
+	<h1 class="form-signin-heading text-muted">Prescription</h1>
+	<br/>
+	
+	<input name="fullname" ng-model="fullname" type="text" class="form-control" placeholder="Full Name" required autofocus=""/>
+	<br/>
+
+	<input name="age" ng-model="age" type="number" class="form-control" placeholder="Age" required/>
+		
+
+	<br/>
+	<div class"form-group" >
+	<label>Add Drugs</label>
+	<a class="btn btn-primary" data-toggle="modal" data-target="#mod"><i class="glyphicon glyphicon-plus-sign"></i></a>
+	</div>
+	<hr/>
+
+	 <!-- Table -->
+  <table class="table">
+  <thead>
+  	<tr>
+  		<th>Drug Name</th>
+  		<th>Frequency</th>
+  		<th>Period</th>
+  		<th>Actions</th>
+  	</tr>
+  </thead>
+  <tbody> 
+  	<tr ng-repeat="drug in druglist" >
+  		<td>{{drug.dname}}</td>
+  		<td>{{drug.frequency}}</td>
+  		<td>{{drug.period}}</td>
+  	
+  		
+    	<td>
+    	<button class="btn btn-warning" ng-click="setSelected($index)" data-toggle="modal" data-target="#mod" ><i class="glyphicon glyphicon-edit"></i></button>
+    	<button class="btn btn-danger" ng-click="removeSelected($index)"><i class="glyphicon glyphicon-minus"></i></button>
+    	</td>
+
+  	</tr>
+  </tbody>
+  </table>
+
+	<br/>
+		
+	<button ng-disabled="prescription.$invalid || !isEmpty()" class="btn btn-success btn-block" type="submit">
+			Create ! 
+	</button>
+
+</form>
+
+<!-- Modal -->
+<div id="mod" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add a Drug</h4>
+      </div>
+      <div class="modal-body">
+        
+
+      <div class="form-group">
+      	<input type="text" class="form-control" name="dname"
+				ng-model="dname" placeholder="Drug Name" />
+      </div>
+
+	<div class="form-group">
+      	<input type="text" class="form-control" name="frequency"
+				ng-model="frequency" placeholder="Frequency" />
+      </div>
+
+	<div class="form-group">
+      	<input type="text" class="form-control" name="period"
+				ng-model="period" placeholder="Period"  />
+      </div>
+
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-primary" ng-disabled="!dname || !frequency || !period" ng-click="addRow()"><i class="glyphicon glyphicon-plus"></i></button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

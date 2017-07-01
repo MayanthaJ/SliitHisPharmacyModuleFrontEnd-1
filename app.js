@@ -17,15 +17,25 @@ app.config(($routeProvider)=>{
 		controller :'prescriptionController',
 		templateUrl : 'app/views/prescription.html'
 	})
+	.when('/myprescriptions',{
+
+		controller :'MyPrescriptionCtrl',
+		templateUrl : 'app/views/myprescription.html'
+	})
+	.when('/myprescriptions/prescription',{
+
+		controller :'NewPrescriptionCtrl',
+		templateUrl : 'app/views/newprescription.html'
+	})
 	.when('/drugs',{
 
 		controller :'drugsController',
 		templateUrl : 'app/views/drugs.html'
 	})
-	.when('/arr',{
+	.when('/doctors',{
 
-		controller :'ArrCtrl',
-		templateUrl : 'app/views/arg.html'
+		controller :'DoctorCtrl',
+		templateUrl : 'app/views/doctor.html'
 	})
 	.when('/logout',{
 		template: '',

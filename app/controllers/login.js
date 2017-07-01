@@ -2,6 +2,7 @@ app.controller('loginController',  function(auth,$scope, $http,authentication, $
 
 	$scope.checkLoggedIn = function(){
 		if (auth.isAuthenticated()) {
+			alert('success', 'Hi! ','You are already Logged In');
 		    $location.path('/dashboard');
         }
     };

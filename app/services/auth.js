@@ -56,8 +56,6 @@ app.factory('auth', function ($window) {
         return cacheID;
       },
       isAuthenticated: function(){
-      	console.log(!!auth.getToken())
-      	console.log(auth.getToken())
         return !!auth.getToken();
       },
       removeToken: function(){
