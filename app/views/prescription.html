@@ -1,0 +1,59 @@
+<div class="container" ng-init="fetchPrescriptions()">
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">View Prescriptions</div>
+  <div class="panel-body">
+    <p>
+    <table>
+      
+    
+    		<tr>
+    			<td><button class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i></button></td>
+    	    </tr>
+    
+    </table>
+    <p>
+  </div>
+  <div class="table-responsive">
+  <!-- Table -->
+  <table class="table">
+  <thead>
+  	<tr>
+  		<th>PID</th>
+  		<th>Full Name</th>
+  		<th>Age</th>
+  		<th>Created Date</th>
+  		<th>View prescribed Drugs</th>
+  		<th>Action</th>
+  	</tr>
+  </thead>
+  <tbody>
+  	<tr  ng-repeat="prescription in prescriptionsList">
+  		<td>{{prescription.pid}}</td>
+  		<td>{{prescription.fullname}}</td>
+  		<td>{{prescription.age}}</td>
+  		<td>{{prescription.created_date}}</td>
+  		
+  		<td><button id={{prescription._id}} class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></td>
+  		<td><button id={{prescription._id}} class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></button></td>
+    	<td><button id={{prescription._id}} class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>
+
+  	</tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+	
+</div>
+
+
+<!-- <td>
+  			
+			<ul class="list-group" ng-repeat="drug in prescription.prescribed_drugs">
+  				<li class="list-group-item">{{drug.drug}} , {{drug.frequency}} , {{drug.period}}</li>
+  				
+  				
+  				<li class="list-group-item"><button class="btn btn-success"><i class="glyphicon glyphicon-refresh"></i></button></li>
+  			</ul>
+
+  		</td> -->

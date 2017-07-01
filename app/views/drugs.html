@@ -1,0 +1,44 @@
+<div class="container" ng-init="fetchDrugs()">
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">View Prescriptions</div>
+  <div class="panel-body">
+    <p>
+    <table>
+        <tr>
+          <td><button class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i></button></td>
+        </tr>
+    
+    </table>
+    <p>
+  </div>
+  <div class="table-responsive">
+  <!-- Table -->
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Drug ID</th>
+      <th>Name</th>
+      <th>Added Date</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  ng-repeat="drug in drugsList">
+      <td>{{drug.id}}</td>
+      <td>{{drug.name}}</td>
+      <td>{{drug.added_date}}</td>
+      <td>{{drug.image}}</td>
+      
+      <td><button id={{drug._id}} class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></td>
+   
+    </tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+  
+</div>
+
+
+

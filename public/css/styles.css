@@ -1,0 +1,40 @@
+.box-wrapper{
+	border-style: solid;
+    border-width: 1px;
+    border-color: #ECF0F1;
+    margin:5px;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;
+    display: inline-block;
+    width: 250px;
+    cursor: pointer !important; 
+}
+
+.icon-wrapper{
+	color: #2ABB9B;
+
+}
+
+.box-wrapper:hover{
+    transition: 0.2s;
+    border-color: #ffbb33;
+}
+.icon-wrapper:hover{
+    transition: 0.2s;
+	transform: scale3d(1.2,1.2,1.2);
+}
+
+a{
+    cursor: pointer !important; 
+    text-decoration: none !important;
+}
+ 
+.main-alert{
+  max-width: 400px;
+  margin: 0 auto;
+ }
+
+.alert-hidden{
+  visibility: hidden;
+}
