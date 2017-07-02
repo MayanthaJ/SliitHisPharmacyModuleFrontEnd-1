@@ -9,17 +9,6 @@
 
   <br/>
   
- 
-  <label>Drug ID</label>
-  <input name="drugId" ng-model="drugId" ng-keyup="editing()" type="text" class="form-control" placeholder="Drug ID" required autofocus=""/>
-  
-
-  <ul class="list-group ulscroll" ng-show="showthis" >
-    <li id="{{drug._id}}" class="list-group-item" ng-repeat="drug in drugList | filter:drugId" ng-click="fillTextBox(drug)">{{drug.dname}}
-  </li>
-</ul>
- <br/>
-
 
 
   <label>Batch ID</label>
@@ -37,6 +26,13 @@
    
 
   <br/>
+
+  <label>Min Stock Level</label>
+   <input name="alertlevel" ng-model="alertlevel" type="number" class="form-control" placeholder="Minimum Stock Level" required autofocus=""/>
+   
+
+  <br/>
+
   <label>Expiry Date</label>
    <input name="exp" type="date" min="{{mindate}}" class="form-control" ng-model="exp" placeholder="Expiry Date" required autofocus=""/>
     <br/>
@@ -49,8 +45,4 @@
 
 </form>
 
-
-DrugID:DrugID,
-      TotalQuantity:TotalQuantity,
-      batchID : batchID,
-      exp:exp
+alertlevel
