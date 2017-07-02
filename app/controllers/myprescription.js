@@ -9,7 +9,7 @@ app.controller('MyPrescriptionCtrl', function (alert,auth, $location, $scope, $h
 						
 						$scope.prescriptionsList = response.data.prescriptionsList;
 
-						$scope.msg = response.data.msg;
+						alert('Succes', 'OK! ',res.data.msg);
 
 					}else if(response.data.success == false){
 						alert('warning', 'Oops! ',res.data.msg);

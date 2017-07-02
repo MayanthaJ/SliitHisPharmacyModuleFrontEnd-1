@@ -27,6 +27,26 @@ app.config(($routeProvider)=>{
 		controller :'NewPrescriptionCtrl',
 		templateUrl : 'app/views/newprescription.html'
 	})
+	.when('/drugmanager/drugcat',{
+
+		controller :'DrugCatCtrl',
+		templateUrl : 'app/views/drugcat.html'
+	})
+	.when('/drugmanager/newdrug',{
+
+		controller :'AddDrugCtrl',
+		templateUrl : 'app/views/newdrug.html'
+	})
+	.when('/drugmanager/catlist',{
+
+		controller :'DrugCatListCtrl',
+		templateUrl : 'app/views/catlist.html'
+	})
+	.when('/drugmanager',{
+
+		controller :'DrugPlusCtrl',
+		templateUrl : 'app/views/drugplus.html'
+	})
 	.when('/drugs',{
 
 		controller :'drugsController',

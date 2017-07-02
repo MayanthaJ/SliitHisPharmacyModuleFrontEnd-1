@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-sm-3"></div>
+<div class="col-sm-6" ng-init="clearAll()">
+
+<form ng-submit="addCategory()" name="drugcat" class="form-signin" novalidate>
+	
+	<h1 class="form-signin-heading text-muted">Add a Drug Category</h1>
+	<br/>
+	
+	<input name="name" ng-model="name" type="text" class="form-control" placeholder="Category Name" required autofocus=""/>
+	<br/>
+		
+	<button ng-disabled="drugcat.$invalid" class="btn btn-success btn-block" type="submit">
+			Create ! 
+	</button>
+
+</form>
+
+

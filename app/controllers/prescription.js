@@ -1,5 +1,4 @@
 app.controller('prescriptionController', function(alert, $scope, $http, $location, $routeParams){
-	console.log($scope.user);
 	$scope.fetchPrescriptions = function(){
  
 			$http.get('http://localhost:8888/prescriptions/').then(function(response){
@@ -8,8 +7,6 @@ app.controller('prescriptionController', function(alert, $scope, $http, $locatio
 					if(response.data.success == true){
 
 						$scope.prescriptionsList = response.data.prescriptionsList;
-
-					
 
 					}else if(response.data.success == false){
 						alert('warning', 'Oops! ',res.data.msg);
@@ -24,6 +21,10 @@ app.controller('prescriptionController', function(alert, $scope, $http, $locatio
 				alert('danger', 'Oops! ', err);
 			});
 
-		}
+		};
+
+	$scope.addPrescription = function(){
+		$location.path('/myprescriptions/prescription');
+	}
 	
 });

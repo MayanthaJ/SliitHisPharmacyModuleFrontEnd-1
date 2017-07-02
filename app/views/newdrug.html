@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+<div class="col-sm-6" ng-init="fetchCat()">
+
+<form ng-submit="addDrug()" name="drugcat" class="form-signin" novalidate>
+  
+  <h1 class="form-signin-heading text-muted">Add a Drug</h1>
+  <br/>
+  
+  <input name="dname" ng-model="dname" type="text" class="form-control" placeholder="Drug Name" required autofocus=""/>
+    <br/>
+    
+    <input name="type" ng-model="type" ng-keyup="getCat(type)" type="text" class="form-control" placeholder="Drug Type" required/>
+    <ul class="list-group" >
+    <li class="list-group-item" ng-repeat="cat in filterCategory" ng-click="fillTextBox(cat)">{{cat.name}}
+    {{cat}}
+</li>
+ <li class="list-group-item">drfehjrjhe
+</li>
+    </ul>
+
+  <br/>
+    
+  <button ng-disabled="drugcat.$invalid" class="btn btn-success btn-block" type="submit">
+      Create ! 
+  </button>
+
+</form>
+
+{{cat}}
+
+
