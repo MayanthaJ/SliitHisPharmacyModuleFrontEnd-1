@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+<div class="col-sm-6" ng-init="fetchDrugs();fetchBatchList();" >
+
+<form ng-submit="addStock()" name="newstock" class="form-signin" novalidate>
+  
+  <h1 class="form-signin-heading text-muted">Add a Stock to a Batch</h1>
+
+
+  <br/>
+  
+ 
+  <label>Drug ID</label>
+  <input name="drugId" ng-model="drugId" ng-keyup="editing()" type="text" class="form-control" placeholder="Drug ID" required autofocus=""/>
+  
+
+  <ul class="list-group ulscroll" ng-show="showthis" >
+    <li id="{{drug._id}}" class="list-group-item" ng-repeat="drug in drugList | filter:drugId" ng-click="fillTextBox(drug)">{{drug.dname}}
+  </li>
+</ul>
+ <br/>
+
+
+
+  <label>Batch ID</label>
+  <input name="batchID" ng-model="batchID" ng-keyup="editingBatch()" type="text" class="form-control" placeholder="Batch ID" required autofocus=""/>
+  
+
+  <ul class="list-group ulscroll" ng-show="showthisb" >
+    <li id="{{batch._id}}" class="list-group-item" ng-repeat="batch in batchList | filter:batchID" ng-click="fillTextBoxBatch(batch)">{{batch.name}}
+  </li>
+</ul>
+ <br/>
+
+ <label>Total Quantity</label>
+   <input name="TotalQuantity" ng-model="TotalQuantity" type="number" class="form-control" placeholder="Stock Quantity" required autofocus=""/>
+   
+
+  <br/>
+  <label>Expiry Date</label>
+   <input name="exp" type="date" min="{{mindate}}" class="form-control" ng-model="exp" placeholder="Expiry Date" required autofocus=""/>
+    <br/>
+
+  <br/>
+    
+  <button ng-disabled="newstock.$invalid" class="btn btn-success btn-block" type="submit">
+      Create ! 
+  </button>
+
+</form>
+
+
+DrugID:DrugID,
+      TotalQuantity:TotalQuantity,
+      batchID : batchID,
+      exp:exp

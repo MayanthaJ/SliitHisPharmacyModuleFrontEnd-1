@@ -7,9 +7,7 @@ $scope.fetchDrugs = function(){
 					if(res.data.success == true){
 
 						$scope.drugList = res.data.drugList;
-                         console.log($scope.drugList)
-						alert('Succes', 'OK! ',res.data.msg);
-
+                         
 					}else if(res.data.success == false){
 						alert('warning', 'Oops! ',res.data.msg);
 					}
