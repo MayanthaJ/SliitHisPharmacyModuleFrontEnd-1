@@ -1,7 +1,7 @@
-<div class="container" ng-init="fetchCatList()">
+<div class="container" ng-init="fetchBatchList()">
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Category List</div>
+  <div class="panel-heading">Batch List</div>
   <div class="panel-body">
     <p>
     <table>
@@ -20,6 +20,7 @@
       <th>Batch ID</th>
       <th>Name</th>
       <th>Total Quantity</th>
+      <th>Alert Level</th>
       <th>Created Date</th>
 
       <th>Actions</th>
@@ -30,6 +31,7 @@
       <td>{{batch._id}}</td>
       <td>{{batch.name}}</td>
       <td>{{batch.quantity}}</td>
+      <td>{{batch.alertlevel}}</td>
       <td>{{batch.createdDate}}</td>
       
      <td><button id={{batch._id}} class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></button></td>

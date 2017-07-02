@@ -1,6 +1,6 @@
 app.controller('BatchCtrl',function(alert, $scope, $http, $location, $routeParams){
  	 
-	$scope.fetchCatList = function(){
+	$scope.fetchBatchList = function(){
 
 		$http.get('http://localhost:8888/batches/').then(function(res){
 			 if(res.status == 200){

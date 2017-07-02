@@ -57,6 +57,11 @@ app.config(($routeProvider)=>{
 		controller :'AddBatchCtrl',
 		templateUrl : 'app/views/newbatch.html'
 	})
+	.when('/drugmanager/stock',{
+
+		controller :'StockCtrl',
+		templateUrl : 'app/views/stocks.html'
+	})
 	.when('/drugs',{
 
 		controller :'drugsController',
