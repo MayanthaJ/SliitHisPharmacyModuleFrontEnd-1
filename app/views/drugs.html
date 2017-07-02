@@ -26,9 +26,9 @@
   <tbody>
     <tr  ng-repeat="drug in drugsList">
       <td>{{drug.id}}</td>
-      <td>{{drug.name}}</td>
+      <td>{{drug.dname}}</td>
       <td>{{drug.added_date}}</td>
-      <td>{{drug.image}}</td>
+      <td><image src="{{drug.image}}" class="img img-responsive"></image></td>
       
       <td><button id={{drug._id}} class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></td>
    

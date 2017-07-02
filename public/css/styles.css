@@ -38,3 +38,8 @@ a{
 .alert-hidden{
   visibility: hidden;
 }
+
+.ulscroll{
+    max-height:200px;
+    overflow: scroll;
+}
