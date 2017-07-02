@@ -1,7 +1,7 @@
-<div class="container" ng-init="fetchDrugs()">
+<div class="container" ng-init="fetchCatList()">
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Drug List</div>
+  <div class="panel-heading">Category List</div>
   <div class="panel-body">
     <p>
     <table>
@@ -17,20 +17,19 @@
   <table class="table">
   <thead>
     <tr>
-      <th>Drug ID</th>
+      <th>Category ID</th>
       <th>Name</th>
-      <th>Added Date</th>
-      <th>Image</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr  ng-repeat="drug in drugsList">
-      <td>{{drug.id}}</td>
-      <td>{{drug.name}}</td>
-      <td>{{drug.added_date}}</td>
-      <td>{{drug.image}}</td>
+    <tr  ng-repeat="category in catList">
+      <td>{{category.id}}</td>
+      <td>{{category.name}}</td>
       
-      <td><button id={{drug._id}} class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></td>
+     <td><button id={{category._id}} class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></button></td>
+      <td><button id={{category._id}} class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>
+
    
     </tr>
   </tbody>
@@ -39,6 +38,4 @@
 </div>
   
 </div>
-
-
 

@@ -1,15 +1,13 @@
-app.controller('drugsController',function(alert, $scope, $http, $location, $routeParams){
- 
-	$scope.fetchDrugs = function(){
+app.controller('DrugCatListCtrl',function(alert, $scope, $http, $location, $routeParams){
+ 	console.log('fark')
+	$scope.fetchCatList = function(){
 
-		$http.get('http://localhost:8888/drugs/').then(function(res){
+		$http.get('http://localhost:8888/categories/').then(function(res){
 			 if(res.status == 200){
 					if(res.data.success == true){
-
-						$scope.drugsList = res.data.drugList;
+						console.log(res.data)
+						$scope.catList = res.data.drugCategoriesList;
                          
-						alert('Succes', 'OK! ',res.data.msg);
-
 					}else if(res.data.success == false){
 						alert('warning', 'Oops! ',res.data.msg);
 					}
