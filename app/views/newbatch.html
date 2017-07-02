@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+<div class="col-sm-6" ng-init="fetchDrugs()">
+
+<form ng-submit="addBatch()" name="newbatch" class="form-signin" novalidate>
+  
+  <h1 class="form-signin-heading text-muted">Add a Batch</h1>
+ 
+  <input name="name" ng-model="name"   type="text" class="form-control" placeholder="Batch Name" required autofocus=""/>
+  <br/>
+  <input name="drugId" ng-model="drugId" ng-keyup="editing()" type="text" class="form-control" placeholder="Drug ID" required autofocus=""/>
+  
+
+    <ul class="list-group ulscroll" ng-show="showthis" >
+    <li id="{{drug._id}}" class="list-group-item" ng-repeat="drug in drugList | filter:drugId" ng-click="fillTextBox(drug)">{{drug.dname}}
+  </li>
+</ul>
+
+  </br>
+    
+  <button ng-disabled="newbatch.$invalid" class="btn btn-success btn-block" type="submit">
+      Create ! 
+  </button>
+
+</form>
