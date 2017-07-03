@@ -1,0 +1,171 @@
+<div class="container" ng-init="fetchPrescriptions()">
+<div class="panel panel-default" ng-init="fetchDrugs()">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Easy Dispenser</div>
+  <div class="panel-body">
+    <p>
+    <table>
+      
+    
+    		<tr>
+    			<td>
+          <div class="form-group">
+          <button style="margin-right: 20px;" ng-click="addPrescription()" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i></button>
+          </div>
+          </td>
+          <td>
+
+          <div class="form-group">
+         <input type="text" class="form-control" placeholder="Search a prescription" ng-model="searchText"/>
+  
+        </div>
+
+          </td>
+    	    </tr>
+
+    
+    </table>
+    <p>
+  </div>
+  <div class="table-responsive">
+  <!-- Table -->
+  <table class="table">
+  <thead>
+  	<tr>
+  		<th>PID</th>
+  		<th>Full Name</th>
+  		<th>Age</th>
+  		<th>Created Date</th>
+  		<th>Dispense</th>
+  	</tr>
+  </thead>
+  <tbody> 
+  	<tr  ng-repeat="prescription in prescriptionsList | filter:searchText  
+    | orderBy:'-created_date':reverse">
+  		<td>{{prescription.pid}}</td>
+  		<td>{{prescription.fullname}}</td>
+  		<td>{{prescription.age}}</td>
+  		<td>{{prescription.created_date}}</td>
+  		
+  		<td><button id={{prescription._id}} class="btn btn-primary"  data-toggle="modal" data-target="#mod" ng-click="fillModel(prescription)"><i class="glyphicon glyphicon-transfer"></i></button></td>
+
+  	</tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+	
+</div>
+
+
+<!-- Modal -->
+<div id="mod" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dispenser</h4>
+      </div>
+      <div class="modal-body">
+        
+       <!-- Table -->
+      <table class="table">
+      <thead>
+        <tr>
+          <th>Drug name</th>
+          <th>Frequency</th>
+          <th>Period</th>
+
+        </tr>
+      </thead>
+      <tbody> 
+        <tr  ng-repeat="drug in dp">
+          <td>{{drug.dname}}</td>
+          <td>{{drug.frequency}}</td>
+          <td>{{drug.period}}</td>
+
+  
+
+        </tr>
+      </tbody>
+      </table>
+      <hr/>
+      <br/>
+    <div class="form-inline">
+
+   <input name="drugId" ng-model="drugId" ng-keyup="editing()" type="text" class="form-control" placeholder="Drug ID" required autofocus=""/>
+  
+
+
+    <ul class="list-group ulscroll" ng-show="showthis" >
+    <li id="{{drug._id}}" class="list-group-item" ng-repeat="drug in drugList | filter:drugId" ng-click="fillTextBox(drug)">{{drug.dname}}
+      </li>
+    </ul>
+
+    <input type="number" name="qty" ng-model="qty"  class="form-control" placeholder="Quantity" />
+
+    <button type="button" class="btn btn-primary" ng-disabled="!drugId || !qty || qty==0  " ng-click="addRow()"><i class="glyphicon glyphicon-plus"></i></button>
+
+    </div>
+
+
+<br/>
+       <!-- Table -->
+      <table class="table">
+      <thead>
+        <tr>
+          <th>Drug ID</th>
+          <th>Drug Name</th>
+          <th>Qty</th>
+          <th>Image</th>
+          <th>Remove</th>
+
+        </tr>
+      </thead>
+      <tbody> 
+        <tr  ng-repeat="drug in customDrugList">
+          <td>{{drug._id}}</td>
+          <td>{{drug.dname}}</td>
+          <td>{{drug.qty}}</td>
+          <td><a href="{{image}}" target="_blank">Verify</a> </td>
+          <td><button class="btn btn-danger" ng-click="removeSelected($index)"><i class="glyphicon glyphicon-minus"></i></button></td>
+        </tr>
+      </tbody>
+      </table>
+
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-success" ng-disabled="customDrugList.length <= 0" 
+        ng-click="processData()"><i class="glyphicon glyphicon-ok"></i> Dispense</button>
+        
+        <button type="button" class="btn btn-danger" ng-click="clearData()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+        
+       <!--    <td>
+            
+      
+  
+
+    </div>
+          </td>
+
+          <td></td>
+ -->
+<!-- <td>
+  			
+			<ul class="list-group" ng-repeat="drug in prescription.prescribed_drugs">
+  				<li class="list-group-item">{{drug.drug}} , {{drug.frequency}} , {{drug.period}}</li>
+  				
+  				
+  				<li class="list-group-item"><button class="btn btn-success"><i class="glyphicon glyphicon-refresh"></i></button></li>
+  			</ul>
+
+  		</td> -->
