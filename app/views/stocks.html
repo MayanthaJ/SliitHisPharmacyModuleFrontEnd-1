@@ -22,13 +22,13 @@
  <br/>
 
  <label>Total Quantity</label>
-   <input name="TotalQuantity" ng-model="TotalQuantity" type="number" class="form-control" placeholder="Stock Quantity" required autofocus=""/>
+   <input name="TotalQuantity" ng-model="TotalQuantity" min="1" type="number" class="form-control" placeholder="Stock Quantity" required autofocus=""/>
    
 
   <br/>
 
   <label>Min Stock Level</label>
-   <input name="alertlevel" ng-model="alertlevel" type="number" class="form-control" placeholder="Minimum Stock Level" required autofocus=""/>
+   <input name="alertlevel" ng-model="alertlevel" type="number" min="0" class="form-control" placeholder="Minimum Stock Level" required autofocus=""/>
    
 
   <br/>

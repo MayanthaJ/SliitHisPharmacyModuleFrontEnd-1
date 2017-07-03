@@ -104,7 +104,7 @@
       </li>
     </ul>
 
-    <input type="number" name="qty" ng-model="qty"  class="form-control" placeholder="Quantity" />
+    <input type="number" name="qty" ng-model="qty"  min="0" class="form-control" placeholder="Quantity" />
 
     <button type="button" class="btn btn-primary" ng-disabled="!drugId || !qty || qty==0  " ng-click="addRow()"><i class="glyphicon glyphicon-plus"></i></button>
 
@@ -139,7 +139,7 @@
       <div class="modal-footer">
 
         <button type="button" class="btn btn-success" data-dismiss="modal" ng-disabled="customDrugList.length <= 0" 
-        ng-click="processData()"><i class="glyphicon glyphicon-ok"></i>Dispense</button>
+        ng-click="processData()"><i class="glyphicon glyphicon-ok"></i> Dispense</button>
         
         <button type="button" class="btn btn-danger" ng-click="clearData()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
       </div>
