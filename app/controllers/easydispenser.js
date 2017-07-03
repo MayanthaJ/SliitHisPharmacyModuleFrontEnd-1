@@ -2,6 +2,7 @@ app.controller('EasyDispenseCtrl', function (alert,auth, $location, $scope, $htt
 
 
 	$scope.customDrugList = [];
+	var batchObj = [];
 	$scope.fetchPrescriptions = function(){
 
 		$http.get('http://localhost:8888/prescriptions').then(function(res){
@@ -50,7 +51,9 @@ app.controller('EasyDispenseCtrl', function (alert,auth, $location, $scope, $htt
 		});
 	}
 	$scope.fillModel = function(prescription){
+		clearAll();
 		$scope.dp = prescription.prescribed_drugs;
+		$scope.prescriptionID = prescription._id;
 	}
 
 
@@ -60,6 +63,7 @@ app.controller('EasyDispenseCtrl', function (alert,auth, $location, $scope, $htt
 		$scope.cdrug = null;
 		$scope.customDrugList = [];
 		$scope.drugId="";
+		batchObj = [];
 
 	}
 
@@ -82,6 +86,7 @@ app.controller('EasyDispenseCtrl', function (alert,auth, $location, $scope, $htt
 							console.log(dbQty)
 						if(dbQty >= $scope.qty ){
 							$scope.customDrugList.unshift({ '_id': $scope.drugId, 'dname': $scope.cdrug.dname, 'qty':$scope.qty,'date':new Date().toISOString() });
+							batchObj.unshift({ '_id': $scope.drugId,"qty":$scope.qty});
 							$scope.qty = 0;
 							$scope.cdrug = null;
 
@@ -123,7 +128,51 @@ app.controller('EasyDispenseCtrl', function (alert,auth, $location, $scope, $htt
 	};
 
 	$scope.processData = function(){
-		console.log($scope.customDrugList)
+		
+		console.log(batchObj);
+
+		  $http({
+          method  : 'PUT',
+          url     : 'http://localhost:8888/batchservice/',
+          data    :  batchObj, 
+          headers : {'Content-Type': 'application/json'} 
+         }).then(function(res){
+         	console.log('================')
+ 			console.log(res.data.msg)
+
+    		alert('success', 'Success! ',res.data.msg);
+
+    	},function(err){
+    		console.log('---------------')
+    		console.log(err.data.msg)
+    		alert('danger', 'Error! ',err.data.msg);
+    	});
+
+
+		console.log($scope.customDrugList);
+		console.log($scope.prescriptionID)
+         $http({
+          method  : 'PUT',
+          url     : 'http://localhost:8888/prescriptions/history/'+$scope.prescriptionID,
+          data    :  $scope.customDrugList, 
+          headers : {'Content-Type': 'application/json'} 
+         }).then(function(res){
+         	console.log('qqqqqqq')
+ 			console.log(res.data.msg)
+    		alert('success', 'Success! ',res.data.msg);
+
+
+    	},function(err){
+    		console.log('............')
+    		console.log(err.data.msg)
+    		alert('danger', 'Error! ',err.data.msg);
+    	});
+
+
+
+
+
+
 	};
 
 	$scope.clearData = function(){
