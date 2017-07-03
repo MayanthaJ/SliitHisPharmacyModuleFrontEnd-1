@@ -61,6 +61,14 @@ app.config(($routeProvider)=>{
 		template: '',
 		controller :'LogoutCtrl'
 	})
+	.when('/supplierregistration',{
+		controller:'supplierController',
+		templateUrl:'app/views/supplierRegistration.html'
+	})
+	.when('/quotations',{
+		controller:'supplierController',
+		templateUrl:'app/views/quotation.html'
+	})
 
 	.otherwise({
 
