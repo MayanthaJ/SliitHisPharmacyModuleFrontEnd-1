@@ -7,8 +7,10 @@
     <table>
       
     
-    		<tr>
-    			<td><button class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i></button></td>
+    		  <tr>
+    			<td><button ng-click="createPres()" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i></button></td>
+
+          <td><input ng-model="searchText" style="margin-left:20px" class="form-control" placeholder="Search Prescriptions" /></td>
     	    </tr>
     
     </table>
@@ -28,7 +30,7 @@
   	</tr>
   </thead>
   <tbody> 
-  	<tr  ng-repeat="prescription in prescriptionsList">
+  	<tr  ng-repeat="prescription in prescriptionsList | orderBy : '-created_date'| filter:searchText">
   		<td>{{prescription.pid}}</td>
   		<td>{{prescription.fullname}}</td>
   		<td>{{prescription.age}}</td>

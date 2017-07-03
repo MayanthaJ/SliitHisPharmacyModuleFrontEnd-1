@@ -30,7 +30,9 @@ app.controller('StockCtrl',function(auth,alert,$scope, $http, $location, $routeP
 
     $scope.batch = null;
     $scope.alertlevel = 0;
-
+    $scope.TotalQuantity = 0;
+    $scope.batchID = "";
+    $scope.exp = "";
   }
 
   $scope.addStock = function(){ 

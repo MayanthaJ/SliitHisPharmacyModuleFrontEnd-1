@@ -42,4 +42,11 @@ a{
 .ulscroll{
     max-height:200px;
     overflow: scroll;
+
+}
+
+.floater{
+    z-index: 1 !important;
+    position:relative !important;
+    float:left !important;
 }
