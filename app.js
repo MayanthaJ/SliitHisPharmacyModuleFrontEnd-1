@@ -62,6 +62,11 @@ app.config(($routeProvider)=>{
 		controller :'StockCtrl',
 		templateUrl : 'app/views/stocks.html'
 	})
+	.when('/frontdesk/',{
+
+		controller :'FrontDeskCtrl',
+		templateUrl : 'app/views/frontdesk.html'
+	})
 	.when('/drugs',{
 
 		controller :'drugsController',

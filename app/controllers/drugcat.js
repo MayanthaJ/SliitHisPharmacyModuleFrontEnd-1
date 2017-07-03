@@ -21,4 +21,5 @@ app.controller('DrugCatCtrl',function(alert,$scope, $http, $location, $routePara
     	});
 
 
-	};});
+	};
+});
