@@ -8,7 +8,7 @@ app.controller('drugsController',function(alert, $scope, $http, $location, $rout
 
 						$scope.drugsList = res.data.drugList;
                          
-						alert('Succes', 'OK! ',res.data.msg);
+						 
 
 					}else if(res.data.success == false){
 						alert('warning', 'Oops! ',res.data.msg);

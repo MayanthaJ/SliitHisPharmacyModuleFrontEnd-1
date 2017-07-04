@@ -64,6 +64,7 @@ app.controller('EasyDispenseCtrl', function (alert,auth, $location, $scope, $htt
 		$scope.customDrugList = [];
 		$scope.drugId="";
 		batchObj = [];
+		$scope.qih = 0;
 
 	}
 
@@ -125,7 +126,38 @@ app.controller('EasyDispenseCtrl', function (alert,auth, $location, $scope, $htt
 		$scope.cdrug = drug;
 		$scope.showthis = false;
 		$scope.image = drug.image;
+		getQIH();
+
+
 	};
+
+	function getQIH(){
+     	$http.get('http://localhost:8888/batches/quantity/'+$scope.drugId).then(function(res){
+     		console.log(res.data)
+			 if(res.status == 200){
+					if(res.data.success == true){
+						
+						var dbQty = res.data.qty;
+						$scope.qih = dbQty;
+					
+                         
+					}else if(res.data.success == false){
+						console.log(res.data.msg)
+						alert('warning', 'Oops! ',res.data.msg);
+					}
+				}else if(res.status == -1){
+					console.log('3')
+					alert('danger','Oops! ', 'Connection Lost');
+				}else{
+					console.log(res.data.msg)
+					alert('warning', 'Oops! ',res.data.msg);
+				}
+
+		},function(err){
+			console.log(err)
+			alert('danger', 'Oops! ', err);
+		});
+	}
 
 	$scope.processData = function(){
 		

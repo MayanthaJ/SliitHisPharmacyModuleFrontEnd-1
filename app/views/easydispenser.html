@@ -8,11 +8,7 @@
       
     
     		<tr>
-    			<td>
-          <div class="form-group">
-          <button style="margin-right: 20px;" ng-click="addPrescription()" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i></button>
-          </div>
-          </td>
+    			
           <td>
 
           <div class="form-group">
@@ -103,6 +99,9 @@
     <li id="{{drug._id}}" class="list-group-item" ng-repeat="drug in drugList | filter:drugId" ng-click="fillTextBox(drug)">{{drug.dname}}
       </li>
     </ul>
+
+   
+     <input type="number"ng-model="qih"  min="0" class="form-control" placeholder="Quantity In hand" readonly="readonly" />
 
     <input type="number" name="qty" ng-model="qty"  min="0" class="form-control" placeholder="Quantity" />
 

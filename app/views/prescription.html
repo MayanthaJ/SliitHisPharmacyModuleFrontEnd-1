@@ -8,11 +8,7 @@
       
     
     		<tr>
-    			<td>
-          <div class="form-group">
-          <button style="margin-right: 20px;" ng-click="addPrescription()" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i></button>
-          </div>
-          </td>
+    	
           <td>
 
           <div class="form-group">
@@ -37,7 +33,7 @@
   		<th>Age</th>
   		<th>Created Date</th>
   		<th>View prescribed Drugs</th>
-  		<th>Action</th>
+  
   	</tr>
   </thead>
   <tbody> 
@@ -48,10 +44,8 @@
   		<td>{{prescription.age}}</td>
   		<td>{{prescription.created_date}}</td>
   		
-  		<td><button id={{prescription._id}} class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></td>
-  		<td><button id={{prescription._id}} class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></button></td>
-    	<td><button id={{prescription._id}} class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button></td>
-
+  		<td><button id={{prescription._id}} class="btn btn-success" data-toggle="modal" data-target="#mod" ng-click="fillModel(prescription)"><i class="glyphicon glyphicon-eye-open" ></i></button></td>
+  
   	</tr>
   </tbody>
   </table>
@@ -60,14 +54,83 @@
 	
 </div>
 
+<!-- Modal -->
+<div id="mod" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-<!-- <td>
-  			
-			<ul class="list-group" ng-repeat="drug in prescription.prescribed_drugs">
-  				<li class="list-group-item">{{drug.drug}} , {{drug.frequency}} , {{drug.period}}</li>
-  				
-  				
-  				<li class="list-group-item"><button class="btn btn-success"><i class="glyphicon glyphicon-refresh"></i></button></li>
-  			</ul>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dispenser</h4>
+      </div>
+      <div class="modal-body">
+        
+       <!-- Table -->
+      <table class="table">
+      <thead>
+        <tr>
+          <th>Drug name</th>
+          <th>Frequency</th>
+          <th>Period</th>
 
-  		</td> -->
+       </tr>
+      </thead>
+      <tbody> 
+        <tr  ng-repeat="drug in dp">
+          <td>{{drug.dname}}</td>
+          <td>{{drug.frequency}}</td>
+          <td>{{drug.period}}</td>
+
+        </tr>
+      </tbody>
+      </table>
+
+      <hr/>
+
+
+        <!-- Table -->
+      <table class="table">
+      <thead>
+       <tr>
+          <td>
+
+          <div class="form-inline">
+         <input type="text" class="form-control" placeholder="Search Prescription History" ng-model="st"/>
+  
+        </div>
+
+          </td>
+          </tr>
+        <tr>
+          <th>Drug ID</th>
+          <th>Drug Name</th>
+          <th>Purchased Quantitiy</th>
+          <th>Date</th>
+
+       </tr>
+      </thead>
+      <tbody> 
+
+        <tr  ng-repeat="h in history | orderBy:'-date'| filter : st">
+          <td>{{h._id}}</td>
+          <td>{{h.dname}}</td>
+          <td>{{h.qty}}</td>
+          <td>{{h.date}}</td>
+
+        </tr>
+      </tbody>
+      </table>
+
+      <br/>
+  
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-danger" ng-click="clearData()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
