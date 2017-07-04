@@ -1,0 +1,49 @@
+<div>
+    <table>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email" class="form-control" placeholder="Email"></td>
+            <td></td>
+            <td>Password:</td>
+            <td><input type="text" name="password" class="form-control" placeholder="Password"></td>
+            <td></td>
+            <td><button name="Login" class="btn btn-primary btn-block" type="submit">Login</button></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<br/>
+
+<div>
+    <table>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email" class="form-control" placeholder="Email" ng-model="supplier.email"></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="name" class="form-control" placeholder="Name" ng-model="supplier.name"></td>
+        </tr>
+        <tr>
+            <td>Company Name:</td>
+            <td><input type="text" name="companyName" class="form-control" placeholder="Company Name" ng-model="supplier.companyName"></td>
+        </tr>
+        <tr>
+            <td>Contact Number:</td>
+            <td><input type="text" name="tel" class="form-control" placeholder="Telephone Number" ng-model="supplier.tel"></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td><input type="text" name="country" class="form-control" placeholder="Country" ng-model="supplier.country"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="pass" class="form-control" placeholder="Password" ng-model="supplier.password"></td>
+        </tr>
+        <tr>
+            <td><button name="Register" class="btn btn-primary btn-block" type="submit" ng-click="addSupplier(supplier)">Register</button></td>
+            <td></td>
+        </tr>
+    </table>
+</div>

@@ -82,10 +82,34 @@ app.config(($routeProvider)=>{
 		controller :'DoctorCtrl',
 		templateUrl : 'app/views/doctor.html'
 	})
+	.when('/tenders',{
+            controller :'tenderController',
+            templateUrl : 'app/views/tender.html'
+        })
+        .when('/purchaseOrders',{
+            controller :'purchaseOrdersController',
+            templateUrl : 'app/views/purchaseOrders.html'
+        })
+
+        
+	.when('/supplierregistration',{
+		controller:'supplierController',
+		templateUrl:'app/views/supplierRegistration.html'
+	})
+	.when('/quotations',{
+		controller:'supplierController',
+		templateUrl:'app/views/quotation.html'
+	})
+	.when('/supplierprofile',{
+		controller:'supplierController',
+		templateUrl:'app/views/supplierProfile.html'
+	})
+
 	.when('/logout',{
 		template: '',
 		controller :'LogoutCtrl'
 	})
+
 
 	.otherwise({
 

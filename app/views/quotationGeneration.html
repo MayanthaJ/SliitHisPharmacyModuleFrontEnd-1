@@ -1,0 +1,38 @@
+<div class="modal fade" id="myEditModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Quotation Details</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table>
+                        <tr>
+                            <td>Quotation ID:</td>
+                            <td><input type="text" name="id" class="form-control" ng-value="selectedQuotation._id" ng-change="upQuotation._id" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td><input type="text" name="description" class="form-control" placeholder="Description" ng-model="upQuotation.description"></td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td><input type="text" name="status" class="form-control" ng-value="selectedQuotation.status" ng-model="upQuotation.status"></td>
+                        </tr>
+                        <tr>
+                            <td>Price:</td>
+                            <td><input type="text" name="country" class="form-control" ng-value="selectedQuotation.price" ng-model="upQuotation.price"></td>
+                        </tr>
+                        <tr>
+                            <td><button name="Update" class="btn btn-primary btn-block" type="submit" ng-click="updateAQuotation(selectedQuotation)">Update</button></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

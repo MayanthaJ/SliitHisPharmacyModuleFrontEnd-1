@@ -1,0 +1,32 @@
+<div>
+    <table ng-repeat="currentSupplier in currentSuppliers">
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email" class="form-control" ng-value="currentSupplier.email" ng-model="supplier.email" readonly></td>
+        </tr>
+        <tr  class="form-group">
+            <td>Name:</td>
+            <td><input type="text" name="name" class="form-control" ng-value="currentSupplier.name" ng-model="supplier.name" readonly></td>
+        </tr>
+        <tr>
+            <td>Company Name:</td>
+            <td><input type="text" name="companyName" class="form-control" ng-value="currentSupplier.companyName" ng-model="supplier.companyName" readonly></td>
+        </tr>
+        <tr>
+            <td>Contact Number:</td>
+            <td><input type="text" name="tel" class="form-control" ng-value="currentSupplier.tel" ng-model="supplier.tel" readonly></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td><input type="text" name="country" class="form-control" ng-value="currentSupplier.country" ng-model="supplier.country" readonly></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="pass" class="form-control" ng-value="currentSupplier.password" ng-model="supplier.password" readonly></td>
+        </tr>
+        <tr>
+            <td><button name="Edit" class="btn btn-primary btn-block" type="submit" ng-click="updateSupplier(supplier)">Edit</button></td>
+            <td><button name="Delete" class="btn btn-primary btn-block" type="submit" ng-click="deleteSupplier(supplier)">Delete</button></td>
+        </tr>
+    </table>
+</div>

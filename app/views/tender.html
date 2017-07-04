@@ -1,0 +1,271 @@
+<div class="container" ng-init="fetchTernders()">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Tenders</div>
+        <div class="panel-body">
+            <p>
+            <table>
+
+
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#newTender"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                        </div></td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search a prescription" ng-model="searchText"/>
+
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+            <p>
+        </div>
+        <div class="table-responsive">
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>TenderID</th>
+                    <th>Drug ID</th>
+                    <th>Drug Name</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                    <!--<th>View prescribed Drugs</th>-->
+                    <!--<th>Action</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr  ng-repeat="tender in tenderList  | filter:searchText
+    | orderBy:'-t_added_date'">
+                    <td>{{tender.tenderid}}</td>
+                    <td>{{tender.drug_id}}</td>
+                    <td>{{tender.drug_name}}</td>
+                    <td>{{tender.quantity}}</td>
+                    <td>{{tender.t_added_date}}</td>
+
+                    <td><button value="{{tender.tenderid}}" data-toggle="modal" data-target="#tenderView" class="btn btn-success"  ng-click="editperson(tender)"><i class="glyphicon glyphicon-eye-open"></i></button>
+                   <button value={{tender.tenderid}} class="btn btn-warning" data-toggle="modal" data-target="#updateTen" class="btn btn-success"  ng-click="delTender(tender)"><i class="glyphicon glyphicon-edit"></i></button>
+                  <button value={{tender.tenderid}} class="btn btn-danger"  data-toggle="modal" data-target="#tenderDelete" class="btn btn-success"  ng-click="delTender(tender)"><i class="glyphicon glyphicon-minus" ></i></button></>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--Add tender Modal -->
+<div class="modal fade" id="newTender" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+        <form ng-submit="addTender()" name="tenderAdd" class="form-signin" >
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2980b9; color:white;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create New Tender</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Drug:</label>
+                    <select name="name" required class="form-control"
+                            ng-model="drug"
+                            ng-options="drug as drug.dname for drug in drugsList">
+                        <option value="">Select One</option>
+                    </select>
+                    <input type="hidden" name="drug.dname" ng-model="drug.dname" disabled class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Drug ID:</label>
+                    <div class="form-group">
+                        <!--<select name="drug_name" disabled class="form-control"-->
+                                <!--ng-model="xx"-->
+                                <!--ng-options="xx.drugId as xx.drugId for xx in drugsList | filter:{ drug : filter.drug }">-->
+                            <!--<option value="">Select One</option>-->
+                        <!--</select>-->
+                        <input type="text" required name="drug.id" ng-model="drug.id" disabled class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Drug Type:</label>
+                    <div class="form-group">
+                        <!--<select name="drug_categ" disabled class="form-control"-->
+                                <!--ng-model="filter.drugId"-->
+                                <!--ng-options="lst.drugId as lst.type for lst in drugsList | filter:{ drugId : filter.drugId }">-->
+                            <!--<option value="">Select One</option>-->
+                        <!--</select>-->
+
+                        <input type="text"  required name="drug.type" ng-model="drug.type" disabled class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Quantity:</label>
+                    <input name="quantity" required type="text" class="form-control" ng-model="quantity">
+                </div>
+                <div class="form-group">
+                <label>Description:</label>
+                <input name="description"  required type="text" class="form-control" ng-model="description">
+            </div>
+                <div class="form-group">
+                    <label>Expiry Date:</label>
+                    <input name="t_ex_date" required type="date" class="form-control" ng-model="t_ex_date">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-disabled="tenderAdd.$invalid" class="btn btn-success"  type="submit" >
+                    Create
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!--update tender Modal-->
+<div class="modal fade" id="updateTen" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+        <form ng-submit="updateTender()" name="tenderAdd" class="form-signin" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e67e22; color:white;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Tender Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-lg-4">
+                        <label>Drug:</label>
+                        <input type="text" name="tenderModal.drug_name" ng-model="tenderModal.drug_name" value="{{"tenderModal.drug_name}}" required disabled class="form-control" />
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Drug ID:</label>
+                        <div class="form-group">
+                            <!--<select name="drug_name" disabled class="form-control"-->
+                            <!--ng-model="xx"-->
+                            <!--ng-options="xx.drugId as xx.drugId for xx in drugsList | filter:{ drug : filter.drug }">-->
+                            <!--<option value="">Select One</option>-->
+                            <!--</select>-->
+                            <input name="tenderModal.tenderid" value="{{tenderModal.tenderid}}" type="hidden" class="form-control" ng-model="tenderModal.tenderid">
+                            <input type="text" name="tenderModal.drug_id" ng-model="tenderModal.drug_id" value="{{"tenderModal.drug_id}}" required disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Drug Type:</label>
+                        <div class="form-group">
+                            <!--<select name="drug_categ" disabled class="form-control"-->
+                            <!--ng-model="filter.drugId"-->
+                            <!--ng-options="lst.drugId as lst.type for lst in drugsList | filter:{ drugId : filter.drugId }">-->
+                            <!--<option value="">Select One</option>-->
+                            <!--</select>-->
+
+                            <input type="text" name="tenderModal.drug_categ" ng-model="tenderModal.drug_categ" value="{{"tenderModal.drug_categ}}" required disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity:</label>
+                        <input name="tenderModal.quantity" value="{{tenderModal.quantity}}" type="text" class="form-control" ng-model="tenderModal.quantity">
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <input name="tenderModal.description" value="{{tenderModal.description}}"  type="text" class="form-control" required ng-model="tenderModal.description">
+                    </div>
+                    <div class="form-group">
+
+                        <label>Expiry Date:{{tenderModal.t_ex_date}}</label>
+                        <input name="tenderModal.t_ex_date" required value="{{tenderModal.t_ex_date}}" type="date" class="form-control" ng-model="tenderModal.t_ex_date">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button ng-disabled="tenderAdd.$invalid" class="btn btn-success"  type="submit" >
+                        Update
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--View tender Modal-->
+<div class="modal fade" id="tenderView" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2980b9; color:white;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tender Details</h4>
+            </div>
+            <div class="modal-body" >
+                Tender ID  : {{tenderModal.tenderid}}<br>
+                Drug ID : {{tenderModal.drug_id}}<br>
+                Drug Name : {{tenderModal.drug_name}}<br>
+                Drug Category : {{tenderModal.drug_categ}}<br>
+                Drug Quantity Needed : {{tenderModal.quantity}}<br>
+                Status : {{tenderModal.status}}<br>
+                Description : {{tenderModal.description}}<br>
+                Expiry Date : {{tenderModal.t_ex_date}}<br>
+                Created Date : {{tenderModal.t_added_date}}<br>
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--delete tender Modal-->
+<div class="modal fade" id="tenderDelete" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+        <form ng-submit="deleteTender()" name="tenderAdd" class="form-signin" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e74c3c; color:white;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Tender</h4>
+                </div>
+                <div class="modal-body" >
+                    Are you want to delete this record?
+                    <div class="form-group">
+
+                        <input name="tenderModal.tenderid" value="{{tenderModal.tenderid}}" type="hidden" class="form-control" ng-model="tenderModal.tenderid">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <button ng-disabled="tenderAdd.$invalid" class="btn btn-danger"  type="submit" >
+                        Delete
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- <td>
+
+            <ul class="list-group" ng-repeat="drug in prescription.prescribed_drugs">
+                <li class="list-group-item">{{drug.drug}} , {{drug.frequency}} , {{drug.period}}</li>
+
+
+                <li class="list-group-item"><button class="btn btn-success"><i class="glyphicon glyphicon-refresh"></i></button></li>
+            </ul>
+
+        </td> -->

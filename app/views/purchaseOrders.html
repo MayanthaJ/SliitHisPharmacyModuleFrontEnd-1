@@ -1,0 +1,254 @@
+<div class="container" ng-init="fetchOrders()">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Purchase Orders</div>
+        <div class="panel-body">
+            <p>
+            <table>
+
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#newOrder"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                        </div></td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search a prescription" ng-model="searchText"/>
+
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+            <p>
+        </div>
+        <div class="table-responsive">
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>OrderID</th>
+                    <th>TenderID</th>
+                    <th>QuotationID</th>
+                    <th>Placed Date</th>
+                    <th>Dispatched Date</th>
+                    <th>Action</th>
+                    <!--<th>View prescribed Drugs</th>-->
+                    <!--<th>Action</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr  ng-repeat="order in orderList | filter:searchText
+    | orderBy:'-order_placed_date':reverse">
+                    <td>{{order.orderid}}</td>
+                    <td>{{order.tenderid}}</td>
+                    <td>{{order.quotationid}}</td>
+                    <td>{{order.order_placed_date}}</td>
+                    <td>{{order.order_dispatched_date}}</td>
+
+                    <td><button value="{{order.orderid}}" data-toggle="modal" data-target="#orderView" class="btn btn-success"  ng-click="viewOrd(order)"><i class="glyphicon glyphicon-eye-open"></i></button>
+                        <button value={{order.orderid}} class="btn btn-warning" data-toggle="modal" data-target="#updateOrd" class="btn btn-success"  ng-click="viewOrd(order)"><i class="glyphicon glyphicon-edit"></i></button>
+                        <button value={{order.orderid}} class="btn btn-danger"  data-toggle="modal" data-target="#orderDelete" class="btn btn-success"  ng-click="delOrd(order)"><i class="glyphicon glyphicon-minus" ></i></button>
+                        </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!--Add order Modal -->
+<div class="modal fade" id="newOrder" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+        <form ng-submit="addOrder()" name="tenderAdd" class="form-signin" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2980b9; color:white;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Purchase Order</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group col-lg-4">
+                        <label>Tender ID:</label>
+                        <div class="form-group">
+
+                            <input required type="text" name="tenderid" ng-model="tenderid" value=""  class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Quotation ID:</label>
+                        <div class="form-group">
+
+                            <input required type="text" name="quotationid" ng-model="quotationid"  class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Supplier ID:</label>
+                        <div class="form-group">
+
+                            <input required type="text" name="supplierid" ng-model="supplierid" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <input required name="status" type="text" class="form-control" ng-model="status">
+                    </div>
+                    <div class="form-group">
+                        <label>Order Dispatched Date:</label>
+                        <input required name="d1"   type="date" class="form-control" ng-model="d1">
+                    </div>
+                    <div class="form-group">
+
+                        <label>Order Completed Date:</label>
+                        <input required name="d2" value="" type="date" class="form-control" ng-model="d2">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button ng-disabled="orderModal.$invalid" class="btn btn-success"  type="submit" >
+                        Create
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<!--update tender Modal-->
+<div class="modal fade" id="updateOrd" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+        <form ng-submit="updateOrder()" name="tenderAdd" class="form-signin" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e67e22; color:white;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Tender Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-lg-6">
+                        <label>Order ID:</label>
+                        <input  ng-required="Select" type="text" name="orderModal.orderid" ng-model="orderModal.orderid" value="{{"orderModal.orderid}}" disabled class="form-control" />
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Tender ID:</label>
+                        <div class="form-group">
+
+                            <!--<input name="tenderModal.tenderid" value="{{orderModal.tenderid}}" type="hidden" class="form-control" ng-model="orderModal.tenderid">-->
+                            <input  required type="text" name="orderModal.tenderid" ng-model="orderModal.tenderid" value="{{"orderModal.tenderid}}" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Quotation ID:</label>
+                        <div class="form-group">
+
+                            <input type="text" name="orderModal.quotationid" ng-model="orderModal.quotationid" value="{{"orderModal.quotationid}}" required disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Supplier ID:</label>
+                        <div class="form-group">
+
+                            <input required type="text" name="orderModal.supplierid" ng-model="orderModal.supplierid" value="{{"orderModal.supplierid}}" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <input required name="tenderModal.quantity" value="{{orderModal.status}}" type="text" class="form-control" ng-model="tenderModal.quantity">
+                    </div>
+                    <div class="form-group">
+                        <label>Order Dispatched Date:{{orderModal.order_dispatched_date}}</label>
+                        <input name="tenderModal.description" value="{{orderModal.order_dispatched_date}}"  type="date" class="form-control" ng-model="tenderModal.description">
+                    </div>
+                    <div class="form-group">
+
+                        <label>Order Completed Date:{{orderModal.order_completed_date}}</label>
+                        <input required name="tenderModal.t_ex_date" value="{{orderModal.order_completed_date}}" type="date" class="form-control" ng-model="tenderModal.t_ex_date">
+                    </div>
+                    <div class="form-group">
+
+                        <label>Created Date:</label>
+                        <input required disabled name="tenderModal.t_ex_date" value="{{orderModal.order_placed_date}}" type="date" class="form-control" ng-model="tenderModal.t_ex_date">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button ng-disabled="orderModal.$invalid" class="btn btn-success"  type="submit" >
+                        Update
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--View tender Modal-->
+<div class="modal fade" id="orderView" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2980b9; color:white;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Purchase Order Details</h4>
+            </div>
+            <div class="modal-body" >
+                Order ID  : {{orderModal.orderid}}<br>
+                Tender ID : {{orderModal.tenderid}}<br>
+                Quotation ID : {{orderModal.quotationid}}<br>
+                Supplier ID : {{orderModal.supplierid}}<br>
+                Status : {{orderModal.status}}<br>
+                Order Dispatched Date : {{orderModal.order_dispatched_date}}<br>
+                Order Completed Date : {{orderModal.order_completed_date}}<br>
+                Placed Date : {{orderModal.order_placed_date}}<br>
+
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--delete tender Modal-->
+<div class="modal fade" id="orderDelete" role="dialog" style="margin: 0 auto; vertical-align: middle;">
+    <div class="modal-dialog">
+        <form ng-submit="delOrder()" name="tenderAdd" class="form-signin" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e74c3c; color:white;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Purchase Order</h4>
+                </div>
+                <div class="modal-body" >
+                    Are you want to delete this record?
+                    <div class="form-group">
+
+                        <input name="tenderModal.tenderid" value="{{orderModal.orderid}}" type="hidden" class="form-control" ng-model="tenderModal.tenderid">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <button ng-disabled="orderModal.$invalid" class="btn btn-danger"  type="submit" >
+                        Delete
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
