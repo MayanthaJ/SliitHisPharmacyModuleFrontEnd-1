@@ -27,4 +27,20 @@ app.controller('prescriptionController', function(alert, $scope, $http, $locatio
 		$location.path('/myprescriptions/prescription');
 	}
 	
+	$scope.fillModel = function(prescription){
+		clearAll();
+		$scope.dp = prescription.prescribed_drugs;
+		$scope.history = prescription.history;
+		console.log($scope.history)
+		$scope.prescriptionID = prescription._id;
+	}
+
+	function clearAll(){
+		$scope.history = [];
+		$scope.drugId="";
+		$scope.db = [];
+		$scope.prescriptionID = "";
+
+	}
+
 });
